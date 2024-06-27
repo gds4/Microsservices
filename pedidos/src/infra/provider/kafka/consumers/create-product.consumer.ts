@@ -9,7 +9,7 @@ type ProductConsumer = {
 
 
 export async function createProductConsumer(){
-    const consumer = await kafkaConsumer("PRODUCT_CREATED")
+    const consumer = await kafkaConsumer("PRODUCT_CREATED", "PRODUCT_CREATED_GROUP")
     await consumer.run({
         eachMessage: async ({message}) =>{
         const messageToString = message.value!.toString();

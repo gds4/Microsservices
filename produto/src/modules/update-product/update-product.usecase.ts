@@ -26,7 +26,7 @@ export class UpdateProductUseCase {
                 ...data
             }
         });
-
+        console.log(`PRODUCT UPDATED: ${productUpdated.name}`)
         return productUpdated;
 
 

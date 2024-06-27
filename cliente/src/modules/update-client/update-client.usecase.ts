@@ -16,7 +16,7 @@ export class UpdateCustomerUseCase {
             id: customerId
             }
         })
-
+        console.log(client)
         if (!client) throw new Error("Costumer don't exists!")
 
         const customerUpdated = await prismaClient.client.update({

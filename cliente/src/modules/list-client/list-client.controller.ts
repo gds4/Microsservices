@@ -10,9 +10,10 @@ export class ListCustomersController {
     }
 
     async handle(request: Request, response: Response) {
-        
+
+        const customerId = request.query.customerId as string
         try{
-            const result = await this.useCase.execute();
+            const result = await this.useCase.execute(customerId);
             return response.status(200).json(result)
         }catch(err: any){
             return response.status(400).json({ error: err.message })

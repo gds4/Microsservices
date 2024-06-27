@@ -16,7 +16,7 @@ export const kafkaConsumer = async (topic: string, groupId: string) => {
     // Inscreve o consumidor no tópico especificado pela variável 'topic'
     // 'fromBeginning: true' indica que o consumidor deve começar a ler
     // mensagens desde o início do tópico, não apenas as novas mensagens
-    await consumer.subscribe({ topic })
+    await consumer.subscribe({ topic, fromBeginning: true })
 
     // Retorna o consumidor configurado
     return consumer

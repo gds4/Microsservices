@@ -19,6 +19,8 @@ router.delete("/customers/:id", (req, res) => {
 })
 
 router.get("/customers", (req,res) => {
+
+
     new ListCustomersController().handle(req,res)
 })
 export { router }

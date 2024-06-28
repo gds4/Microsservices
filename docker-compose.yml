@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  api-cliente:
+    image: api-cliente:1.0
+    container_name: api-cliente-container
+    ports:
+      - "3001:3001"
+      - "5555:5555" #porta do prisma studio CMD: "npx prisma studio"
+    environment:
+      - DB_HOST=db
+      - DB_USER=postgres
+      - DB_PASSWORD=root123
+      - DB_NAME=MICROSSERVICES
+      - DB_DIALECT=postgres
+      - PORT=3001
+    depends_on:
+      - db
+    command: sh -c "npx prisma migrate dev && npm run dev"
+
+  api-pedidos:
+    image: api-pedidos:1.0
+    container_name: api-pedidos-container
+    ports:
+      - "3002:3002"
+      - "5556:5555" #porta do prisma studio CMD: "npx prisma studio"
+    environment:
+      - DB_HOST=db
+      - DB_USER=postgres
+      - DB_PASSWORD=root123
+      - DB_NAME=MICROSSERVICES
+      - DB_DIALECT=postgres
+      - PORT=3002
+    depends_on:
+      - db
+    command: sh -c "npx prisma migrate dev && npm run dev"
+
+  api-produto:
+    image: api-produto:1.0
+    container_name: api-produto-container
+    ports:
+      - "3003:3003"
+      - "5557:5555"  #porta do prisma studio CMD: "npx prisma studio"
+    environment:
+      - DB_HOST=db
+      - DB_USER=postgres
+      - DB_PASSWORD=root123
+      - DB_NAME=MICROSSERVICES
+      - DB_DIALECT=postgres
+      - PORT=3003
+    depends_on:
+      - db
+    command: sh -c "npx prisma migrate dev && npm run dev"
+
+  api-notificacoes:
+    image: api-notificacoes:1.0
+    container_name: api-notificacoes-container
+    ports:
+      - "3004:3004"
+    environment:
+      - PORT=3004
+    command: sh -c "npm run dev"
+
+  db:
+    image: postgres
+    container_name: postgres-db
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_PASSWORD=root123
+      - POSTGRES_DB=MICROSSERVICES
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin-container
+    ports:
+      - "5050:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@pgadmin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    depends_on:
+      - db

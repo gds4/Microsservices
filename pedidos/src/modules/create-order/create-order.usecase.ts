@@ -24,7 +24,7 @@ export class CreateOrderUseCase {
         
         if(!customer) throw new Error("Customer not found!")
         
-        const customerResponse =  await axios.get(`http://localhost:3001/customers?customerId=${customer.externalId}`)
+        const customerResponse =  await axios.get(`http://api-cliente-container:3001/customers?customerId=${customer.externalId}`)
         const externalCustomer = customerResponse.data
         console.log(externalCustomer)
 
@@ -38,7 +38,7 @@ export class CreateOrderUseCase {
 
             const externalProductId = product?.externalId
 
-            const response = await axios.get(`http://localhost:3003/products?productId=${externalProductId}`)
+            const response = await axios.get(`http://api-produto-container:3003/products?productId=${externalProductId}`)
             const externalProduct = response.data
 
             const productFinalQuantity =  externalProduct.quantity - element.quantity
@@ -47,7 +47,7 @@ export class CreateOrderUseCase {
                 throw new Error(`Product: ${externalProduct.name} - Quantity not available in stock.`)
             }
 
-            await axios.put(`http://localhost:3003/products/${externalProductId}`, { quantity: productFinalQuantity })
+            await axios.put(`http://api-produto-container:3003/products/${externalProductId}`, { quantity: productFinalQuantity })
         });
 
 

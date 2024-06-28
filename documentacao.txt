@@ -1,0 +1,110 @@
+ROTAS DE CLIENTES =========> /customers <===========
+
+POST /customers
+Cadastra um novo cliente
+Body (raw JSON):
+{
+    "nome": "asdasdsad",
+    "email": "asdasdds@teste.com",
+    "password": "12r4h4",
+    "phone": "255511-0732"
+}
+- Todos os atributos são obrigatórios
+
+PUT /customers/:id
+
+Atualiza os dados de um cliente
+
+Body (raw JSON):
+{
+    "nome": "Marcos",
+    "email": "marcos@teste.com",
+    "password": "12r4h4",
+    "phone": "2553211-0712"
+}
+- Todos os atributos são modificáveis
+
+DELETE /customers/:id
+
+Remove um cliente
+
+Exemplo: /customers/8fbcfee3-cfba-4dc5-9b3b-a4ecda03e9c7
+
+GET /customers
+
+Lista todos os clientes cadastrados
+
+GET /customers?customerId=idDoCliente
+Lista um único cliente com base no ID fornecido
+
+
+ROTAS DE PEDIDOS =========> /orders <===========
+
+POST /orders
+
+Cadastra um novo pedido
+
+Body (raw JSON):
+
+{
+    "customerId": "9f05c682-ea6d-4714-a18e-1cd9b14ba99f",
+    "items": [{
+        "productId": "f6644ccf-66a6-4143-9418-82c50bd05bcc",
+        "quantity": 4
+    }]
+}
+
+- o customer id não é o mesmo id da api de clientes mas o id da tabela customers da api de pedidos, o mesmo para o productId
+
+PATCH /orders/:id
+
+Atualiza o status de um pedido
+
+Exemplo: /orders/8fbcfee3-cfba-4dc5-9b3b-a4ecda03e9c7
+
+Body (raw JSON):
+{
+    "id": "c794be82-ee7d-44ee-9922-76ba8a5fbb2a",
+    "status": "ENTREGUE"
+}
+
+- Os atributos são obrigatórios
+
+
+ROTAS DE PRODUTOS =========> /products <===========
+
+POST /products
+Cadastra um novo produto
+Body (raw JSON):
+{
+    "name": "Televisao",
+    "code": "87654",
+    "quantity": 150,
+    "price": 1300.50
+}
+- Todos os atributos são obrigatórios
+
+GET /products
+Lista todos os produtos cadastrados
+
+GET /products?productId=idDoProduto
+Lista um único produto com base no ID fornecido
+
+PUT /products/:id
+
+Atualiza os dados de um produto
+
+Exemplo: /products/0005e040-a948-469f-a327-6024e51fa4bc
+
+Body (raw JSON):
+{
+    "name": "video-game"
+}
+
+- Todos os atributos são modificáveis
+
+DELETE /products/:id
+
+Remove um produto
+
+Exemplo: /products/3c65a51b-a36c-4ed6-a00d-4ae8c83fa134

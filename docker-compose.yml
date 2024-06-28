@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   api-cliente:
-    image: api-cliente:1.0
+    image: gdantass/api-cliente:1.0
     container_name: api-cliente-container
     ports:
       - "3001:3001"
@@ -19,7 +19,7 @@ services:
     command: sh -c "npx prisma migrate dev && npm run dev"
 
   api-pedidos:
-    image: api-pedidos:1.0
+    image: gdantass/api-pedidos:1.0
     container_name: api-pedidos-container
     ports:
       - "3002:3002"
@@ -36,7 +36,7 @@ services:
     command: sh -c "npx prisma migrate dev && npm run dev"
 
   api-produto:
-    image: api-produto:1.0
+    image: gdantass/api-produto:1.0
     container_name: api-produto-container
     ports:
       - "3003:3003"
@@ -53,7 +53,7 @@ services:
     command: sh -c "npx prisma migrate dev && npm run dev"
 
   api-notificacoes:
-    image: api-notificacoes:1.0
+    image: gdantass/api-notificacoes:1.0
     container_name: api-notificacoes-container
     ports:
       - "3004:3004"
@@ -69,14 +69,3 @@ services:
     environment:
       - POSTGRES_PASSWORD=root123
       - POSTGRES_DB=MICROSSERVICES
-
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin-container
-    ports:
-      - "5050:80"
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@pgadmin.com
-      - PGADMIN_DEFAULT_PASSWORD=admin
-    depends_on:
-      - db

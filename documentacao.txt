@@ -54,13 +54,13 @@ Body (raw JSON):
     }]
 }
 
-- o customer id não é o mesmo id da api de clientes mas o id da tabela customers da api de pedidos, o mesmo para o productId
+- o customer id não é o mesmo id da api de clientes, mas sim o id da tabela customers da api de pedidos, o mesmo para o productId
 
 PATCH /orders/:id
 
 Atualiza o status de um pedido
 
-Exemplo: /orders/8fbcfee3-cfba-4dc5-9b3b-a4ecda03e9c7
+Exemplo: /orders
 
 Body (raw JSON):
 {
